@@ -1,0 +1,16 @@
+\Procedure{squareMatrix}{}
+\For{\textbf{$i$}  \textbf{ $\leq$ } $G_{matrix}.length$}
+    \For{\textbf{$j$} \textbf{ $\leq$ } $G_{matrix}.length$}
+        \State $G^2_{matrix}[i][j] = G_{matrix}[i][j]$
+    \EndFor
+\EndFor
+\For{\textbf{$i$}  \textbf{ $\leq$ } $G_{matrix}.length$}
+    \For{\textbf{$j$}  \textbf{ $\leq$ } $G_{matrix}.length$}
+        \For{\textbf{$k$} \textbf{ $\leq$ } $G_{matrix}.length$}
+            \If {$G_{matrix}[i][j] == 1 \&\& G_{matrix}[i][j] == 1$}
+                \State $G^2_{matrix}[i][j] = 1$
+            \EndIf
+        \EndFor
+    \EndFor
+\EndFor
+\EndProcedure

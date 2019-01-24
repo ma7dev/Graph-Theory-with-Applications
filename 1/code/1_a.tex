@@ -1,0 +1,10 @@
+\Procedure{squareList}{}
+\State $G^2_{list} = G_{list}$ 
+\For{\textbf{$v_i$}  \textbf{ $\in$ } $G_{list}$}
+    \For{\textbf{$v_j$} \textbf{ $\in$ } $adj(v_i)$}
+        \For{\textbf{$v_k$} \textbf{ $\in$ } $adj(v_j)$}
+            \State $G^2_{list}[adj(v_i)].append(v_k)$
+        \EndFor
+    \EndFor
+\EndFor
+\EndProcedure

@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[shortlabels]{enumitem}
+\usepackage{caption}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{import}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+% creates keywords for input and output in algorithm block
+\algblock{Input}{EndInput}
+\algnotext{EndInput}
+\algblock{Output}{EndOutput}
+\algnotext{EndOutput}
+\newcommand{\Desc}[2]{\State \makebox[13em][l]{#1}#2}
+\lhead{Mazen Alotaibi \textit{(alotaima)}}
+\rhead{CS 420 \\ Section 001 \\ Winter 2019 \\ HW 1}
+
+\begin{document}
+
+\begin{problem}{1} The \textbf{square} of a directed graph $G= (V, E)$ is the graph $G^2 = (V, E^2)$, such that $(u, v) \in E^2$ if and only if $G$ contains a path with two edges between $u$ and $v$. Describe efficient algorithms for computing.
+
+\begin{enumerate}[(a)]
+    \item the adjacency-list for $G^2$ from the adjacency-list of $G$.
+    \item the adjacency-matrix of $G^2$ from the adjacency matrix of $G$.
+\end{enumerate}
+
+Analyze the running times of your algorithms.
+\end{problem}
+\begin{sol}
+\begin{enumerate}[(a)]
+    \item Please check algorithm 1 at the end of the document. Time Complexity: $$O(V \times adj(V)^2)=O(V^3)$$
+    \item Please check algorithm 2 at the end of the document. Time Complexity: $$O(V^2 + V^3)=O(V^3)$$
+\end{enumerate}
+\end{sol}
+
+\begin{problem}{2} A graph $(V, E)$ is \textbf{bipartite} if the vertices $V$ can be partitioned into two subsets $L$ and $R$, such that every
+edge has one vertex in $L$ and the other in $R$.
+
+\begin{enumerate}[(a)]
+    \item Prove that every tree is a bipartite graph. 
+    \item Describe an efficient algorithm that determines whether a given undirected graph is bipartite.
+    \item Time Complexity: $$O((V + E) \times V) = O(V^2)$$
+\end{enumerate}
+\end{problem}
+\begin{sol}
+\begin{enumerate}[(a)]
+    \item A graph is bipartite if and only if it doesn't contain an odd cycle. A tree doesn't contain any cycle. Therefore, a tree doesn't contain an odd cycle too. Thus, a tree is bipartite.
+    \item Please check algorithm 3 at the end of the document.
+    \item Time Complexity: $$O(V+E)$$
+\end{enumerate}
+\end{sol}
+
+\begin{problem}{3} In the \textbf{bottleneck-path problem}, you are given a graph $G$ with edge weights, two vertices $s$ and $t$ and a particular weight $W$; your goal is to find a path from $s$ to $t$ in which every edge has at least weight $W$.
+
+\begin{enumerate}[(a)]
+    \item Describe an efficient algorithm to solve this problem. 
+    \item What is the running time of your algorithm.
+\end{enumerate}
+\end{problem}
+\begin{sol}
+\begin{enumerate}[(a)]
+    \item Breadth-First Search (BFS) with ignoring any weights that are less than $W$.
+    \item Time Complexity: $$O(V+E)$$
+\end{enumerate}
+\end{sol}
+
+\begin{problem}{4} \textbf{Longest Path in a DAG (LP-DAG)}
+
+\begin{enumerate}[(a)]
+    \item Describe an algorithm to find the longest path (measured in number of edges) in an unweighted DAG.
+    \item What is the running time of the algorithm?
+\end{enumerate}
+\end{problem}
+\begin{sol}
+\begin{enumerate}[(a)]
+    \item Please check algorithm 4 at the end of the document.
+    \item Time Complexity: $$O(V \times ((V + E) + V)) = O(V \times E)$$
+\end{enumerate}
+\end{sol}
+
+\begin{problem}{5}  Implement the algorithm you described in (4) in C, C++ or Python, name the programs “lp-dag”. Your program should read input from a file called “graph.txt” where the first line in the file is the number of vertices $n$ (with $n \leq 100$) in the graph and the second line is the number of edges. Assume the vertices are numbered $1,2, .., n$. The following lines each contains an edge. The program should output to the terminal the length of the longest path and the path itself.
+\end{problem}
+\begin{sol}
+Please check README.md to run lp-dag.py
+\end{sol}
+\newpage
+
+\begin{algorithm}
+\caption{Problem 1.a}
+\label{alg:waypointAlgo}
+\begin{algorithmic}[1]
+\import{code/}{1_a.tex}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Problem 1.b}
+\label{alg:waypointAlgo}
+\begin{algorithmic}[1]
+\import{code/}{1_b.tex}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Problem 2.b}
+\label{alg:waypointAlgo}
+\begin{algorithmic}[1]
+\import{code/}{2.tex}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Problem 4.a}
+\label{alg:waypointAlgo}
+\begin{algorithmic}[1]
+\import{code/}{4.tex}
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}

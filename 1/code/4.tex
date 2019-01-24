@@ -1,0 +1,25 @@
+\Procedure{LPDAG}{}
+\State $all\_paths\_global = []$
+\State $max\_len\_global = 0$
+\State $max\_paths\_global = 0$
+\For{\textbf{$i$}  \textbf{ $\in$ } $V$}
+    \State $all\_path = DFS(E_{adjList}, i)$
+    \State $all\_paths\_global.append(paths)$
+    \If {$all_paths\ not\ empty$}
+        \State $max_len = 0$
+        \For{\textbf{$path$}  \textbf{ $\in$ } $all_paths$}
+            \If {$path.length > max\_len$}
+                \State $max\_paths = path$
+                \State $max\_len = path.length$
+            \EndIf
+        \EndFor
+        \If {$max\_len > max\_len\_global$}
+            \State $max\_len\_global = max\_len$
+            \State $max\_paths\_global = max\_paths$
+        \EndIf
+    \EndIf
+\EndFor
+
+\State \textbf{return} $all\_paths\_global, max\_len\_global, max\_paths\_global$
+
+\EndProcedure

@@ -1,0 +1,31 @@
+\Procedure{isBipartite}{}
+\If {$G[0] \notin visited$}
+    \State $v = G[0]$
+    \State $isBipartite(G, v)$
+\EndIf
+\State $visited.append(v)$
+\State $L.append(v)$ 
+\State $v_s.value = 1$ 
+\For{\textbf{$v_i$}  \textbf{ $\in$ } $adjList(v)$}
+    \If {$G[0] \notin visited$}
+        \If {$v_i \in L$}
+            \State \textbf{return} False
+        \EndIf
+        \State $visited.append(v_i)$
+        \State $R.append(v_i)$ 
+        \State $v_i.value = 0$ 
+    \EndIf
+\EndFor
+\State $v = R[0]$
+\For{\textbf{$v_i$}  \textbf{ $\in$ } $adjList(v)$}
+    \If {$G[0] \notin visited$}
+        \If {$v_i \in R$}
+            \State \textbf{return} False 
+        \EndIf
+        \State $isBipartite(G, v_i)$ 
+    \EndIf
+\EndFor
+\If {$checkIfAllVisited(G)$}
+    \State \textbf{return} True
+\EndIf
+\EndProcedure
