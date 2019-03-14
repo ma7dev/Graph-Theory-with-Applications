@@ -1,0 +1,18 @@
+\Procedure{kruskal}{}
+\State $Sort(listEdges)$
+\For{\textbf{$i = 1$}  $to$ \textbf{ $n$ }}
+    \State $MakeSet(i)$
+\EndFor
+\State $count=0$
+\State $i=1$
+\State $sum=0$
+\While{\textbf{$count$}  \textbf{ $<$ } $n-1$}
+    \If {$FindSet(v_{i_1})\ \neq\ FindSet(v_{i_2})$}
+        \State \textbf{$sum=sum+GetWeight(i)$}
+        \State \textbf{$count =count+1$}
+        \State \textbf{$Unoin(v_1,v_2)$}
+    \EndIf
+    \State \textbf{$count =count+1$}
+\EndWhile
+\State \textbf{return} sum
+\EndProcedure

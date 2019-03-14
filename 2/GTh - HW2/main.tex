@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[shortlabels]{enumitem}
+\usepackage{caption}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{import}
+\usepackage{amsmath,amsthm,amssymb,amsfonts, enumitem, fancyhdr, color, comment, graphicx, environ}
+\pagestyle{fancy}
+\setlength{\headheight}{65pt}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{sol}
+    {\emph{Solution:}
+    }
+    {
+    \qed
+    }
+\specialcomment{com}{ \color{blue} \textbf{Comment:} }{\color{black}} %for instructor comments while grading
+\NewEnviron{probscore}{\marginpar{ \color{blue} \tiny Problem Score: \BODY \color{black} }}
+% creates keywords for input and output in algorithm block
+\algblock{Input}{EndInput}
+\algnotext{EndInput}
+\algblock{Output}{EndOutput}
+\algnotext{EndOutput}
+\newcommand{\Desc}[2]{\State \makebox[13em][l]{#1}#2}
+\lhead{Mazen Alotaibi \textit{(alotaima)}}
+\rhead{CS 420 \\ Section 001 \\ Winter 2019 \\ HW 2}
+
+\begin{document}
+
+\begin{problem}{1} \textbf{Reachability}. Let $G = (V, E)$...
+\end{problem}
+\begin{sol}
+We can use BFS algorithm to determine the min(u). However, we will need to sort the vertices in creasing order first before applying BFS. In order to make the sorting algorithm faster, we will need to use a linear sorting algorithm, such as Pigeonhole Sort or Counting Sort. BFS will find the lowest unvisited node by previous BFS and start BFS from that node. Please check \textit{\textbf{Algorithm 1} Problem 1}. Time Complexity:
+\begin{enumerate}
+    \item Sorting: $O(V)$
+    \item BFS: $O(V+E)$
+    \item Total: $O(V+V+E)=O(V)$
+\end{enumerate}
+
+\end{sol}
+
+\begin{problem}{2} The police department in the city of Computopia...
+\begin{enumerate}[(a)]
+    \item Formulate this problem graph-theoretically, and explain why it can indeed be solved in linear time.
+    \item  Suppose it now turns out that the mayor’s original claim is false. She next claims something weaker: if you start driving from town hall, navigating one-way streets, then no matter where you reach, there is always way to drive legally back to the town hall. Formulate this weaker property as a graph-theoretical problem and carefully show how it too can be checked in linear time.
+\end{enumerate}
+\end{problem}
+\begin{sol}
+\begin{enumerate}[(a)]
+    \item In order for the mayor to check whether their statement is correct, that all streets are one-way streets. We can check this by treating the graph as a Strongly-Connected Component (SCC) graph, which means we can use BFS to prove whether the graph is SCC graph or not, which takes a linear time to prove that. $O(V+E)$.
+    \item  We can prove that the graph is still SCC, one-way streets, and can reach back to Town Hall when starting from Town Hall by using DFS. Whenever apply to DFS and couldn't reach the end point as Town Hall then the Mayor's statement is wrong, which it could be checked in a linear time. $O(V+E)$.
+a graph-theoretical problem and carefully show how it too can be checked in linear time.
+\end{enumerate}
+\end{sol}
+
+\begin{problem}{3} Let $G = (V,E)$ be a connected...
+\end{problem}
+\begin{sol}
+There are three cases of decrease the weight of an edge, if the T was the MST tree of G before the update:
+
+\begin{enumerate}
+    \item If we decreased all the edges in G, then T is the MST tree of G.
+    \item If we decreased one or multiple edges in T, then T is the MST tree of G.
+    \item If we decreased one or multiple edges in G but not in T, then we need to apply this algorithm:
+    \begin{enumerate}
+        \item Add the updated edge to MST, then we will have a cycle.
+        \item Remove the highest edge on the cycle to turn it to MST. (Cycle Property)
+        \item Time Complexity: $O(V)$
+    \end{enumerate}
+\end{enumerate}
+\end{sol}
+
+\begin{problem}{4} \textbf{Euclidean MST Implementation} ...
+\begin{enumerate}[(a)]
+    \item A verbal describe of your algorithm and data structures
+    \item The pseudo-code.
+    \item Theoretical running time.
+\end{enumerate}
+\end{problem}
+\begin{sol}
+\begin{enumerate}[(a)]
+    \item From my knowledge, I have founded this problem is similar to what we learned in week 3, MST slides. The only difference is the weight calculation and estimation, so I have solved the problem by doing the following:
+    \begin{enumerate}
+        \item Reading the file line by line and save the vertices (x, y) positions into a list and storing every list of vertices to a list of test cases.
+        \item Mapping the vertices position in every test case to a list of possible edges with calculated weights from the Euclidean distance function.
+        \item Apply Kruskal's algorithm the same way as we have learned in class.
+        \item Get the cumulative value of the suggested MST to printed.
+    \end{enumerate}
+    \item Please check \textit{\textbf{Algorithm 2} Problem 4.b}.
+    \item Time Complexity:
+        \begin{enumerate}
+        \item Sorting: $O(E\ log(E))$
+        \item Finding Union: $O(E\ log(V))$ 
+        \item Overall: $O((E\ log(E))\ +\ (E\ log(V)))=O(E\ log(E))=O(E\ log(V))$
+    \end{enumerate}
+\end{enumerate}
+\end{sol}
+\newpage
+
+\begin{algorithm}
+\caption{Problem 1}
+\label{alg:waypointAlgo}
+\begin{algorithmic}[1]
+\import{code/}{1.tex}
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+\caption{Problem 4.b}
+\label{alg:waypointAlgo}
+\begin{algorithmic}[1]
+\import{code/}{4.tex}
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}

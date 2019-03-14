@@ -1,0 +1,5 @@
+\begin{problem}{2: Disjoint Roads.} A number k of trucking companies, $c_1$, . . . , $c_k$...
+\end{problem}
+\begin{sol}
+This problem is a max flow problem. By using Ford-Fulkerson algorithm, the result of the algorithm is a set of paths. If the value of the flow is less than k, the algorithm returns false, impossible. The time complexity is $O(Ek)$ as the max flow $|f|<k$.
+\end{sol}
