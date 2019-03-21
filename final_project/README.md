@@ -1,5 +1,15 @@
 # Travel Saleman Problem
 
+## Requirements
+* Python3
+* Numpy
+* Pandas
+* Matplotlib
+
+```
+python3 -m pip install numpy pandas matplotlib
+```
+
 ## To the run the program
 
 ```
