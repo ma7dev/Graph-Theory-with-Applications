@@ -1,0 +1,14 @@
+\Procedure{HK}{$G$, $n$}
+    \For{$k$ \textbf{from} $2$ \textbf{to} $n$}
+        \State $C(\{k\},k)=d_{1, k}$
+    \EndFor
+    \For{$s$ \textbf{from} $2$ \textbf{to} $n-1$}
+        \For{$all\ S \subseteq \{2,...,n\}, |S|=s$}
+            \For{$all\ k \in S$}
+                \State $\{C(S,k)=min_{m \neq k, m \in S}[C(S-\{k\},m)+d_{m, k}]\}$
+            \EndFor
+        \EndFor
+    \EndFor
+    \State $opt=min_{k \neq 1}[C(\{2, 3, ..., n\}, k) + d_{k, 1}]$
+    \State \textbf{return} $opt$
+\EndProcedure

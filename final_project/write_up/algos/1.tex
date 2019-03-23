@@ -1,0 +1,14 @@
+\Procedure{BF}{$r$, $cititiesNotInRoute[1...n]$}
+    \If {$citiesNotInRoute.length != 0$}
+        \For{$i$ \textbf{from} $0$ \textbf{to} $citiesNotInRoute.length$}
+            \State $cityRemoved = popFront(cititiesNotInRoute)$
+            \State $newRoute = r$
+            \State $push(newRoute, cityRemoved)$
+            \State $BF(newRoute, cititiesNotInRoute)$
+            \State $push(cititiesNotInRoute, cityRemoved)$
+        \EndFor
+    \EndIf
+    \If {$skip == true$}
+        \State $print(r)$
+    \EndIf
+\EndProcedure
